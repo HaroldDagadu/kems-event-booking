@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* KNUST University Color Scheme */
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 120 100% 20%; /* Dark green */
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 120 100% 20%; /* Dark green text */
+    --popover: 0 0% 100%; /* White popovers */
+    --popover-foreground: 120 100% 20%; /* Dark green text */
+    --primary: 120 100% 25%; /* KNUST Green */
+    --primary-foreground: 0 0% 100%; /* White text on green */
+    --secondary: 60 100% 95%; /* Light yellow */
+    --secondary-foreground: 120 100% 20%; /* Dark green text */
+    --muted: 60 100% 97%; /* Very light yellow */
+    --muted-foreground: 120 60% 30%; /* Medium green */
+    --accent: 60 100% 90%; /* Light yellow accent */
+    --accent-foreground: 120 100% 20%; /* Dark green text */
+    --destructive: 0 84.2% 60.2%; /* Red for errors */
+    --destructive-foreground: 0 0% 100%; /* White text on red */
+    --border: 120 100% 90%; /* Light green borders */
+    --input: 120 100% 95%; /* Very light green inputs */
+    --ring: 120 100% 25%; /* KNUST Green ring */
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 120 100% 5%; /* Very dark green */
+    --foreground: 60 100% 95%; /* Light yellow text */
+    --card: 120 100% 8%; /* Dark green cards */
+    --card-foreground: 60 100% 95%; /* Light yellow text */
+    --popover: 120 100% 8%; /* Dark green popovers */
+    --popover-foreground: 60 100% 95%; /* Light yellow text */
+    --primary: 120 100% 35%; /* Bright green */
+    --primary-foreground: 0 0% 100%; /* White text */
+    --secondary: 120 100% 15%; /* Medium dark green */
+    --secondary-foreground: 60 100% 95%; /* Light yellow text */
+    --muted: 120 100% 12%; /* Dark green muted */
+    --muted-foreground: 60 100% 80%; /* Medium yellow text */
+    --accent: 120 100% 20%; /* Medium green accent */
+    --accent-foreground: 60 100% 95%; /* Light yellow text */
+    --destructive: 0 62.8% 30.6%; /* Dark red */
+    --destructive-foreground: 60 100% 95%; /* Light yellow text */
+    --border: 120 100% 15%; /* Medium green borders */
+    --input: 120 100% 12%; /* Dark green inputs */
+    --ring: 120 100% 35%; /* Bright green ring */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* KNUST Events Management System Custom Styles */
+.kems-gradient {
+  background: linear-gradient(135deg, #006400 0%, #228B22 50%, #FFD700 100%);
+}
+
+.kems-card {
+  @apply bg-card text-card-foreground rounded-lg border border-green-200 shadow-sm;
+}
+
+.kems-button-primary {
+  @apply bg-green-600 text-white hover:bg-green-700 rounded-md px-4 py-2 font-medium transition-colors border border-green-500;
+}
+
+.kems-button-secondary {
+  @apply bg-yellow-100 text-green-800 hover:bg-yellow-200 rounded-md px-4 py-2 font-medium transition-colors border border-yellow-300;
+}
+
+.kems-input {
+  @apply flex h-10 w-full rounded-md border border-green-200 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-green-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.kems-header {
+  @apply bg-white border-b border-green-200 shadow-sm;
+}
+
+.kems-sidebar {
+  @apply bg-green-50 border-r border-green-200;
+}
+
+.kems-nav-item {
+  @apply text-green-800 hover:bg-green-100 hover:text-green-900 rounded-md px-3 py-2 text-sm font-medium transition-colors;
+}
+
+.kems-nav-item-active {
+  @apply bg-green-100 text-green-900 font-semibold;
+}
+
+.kems-status-approved {
+  @apply text-green-700 bg-green-100 border border-green-300;
+}
+
+.kems-status-pending {
+  @apply text-yellow-700 bg-yellow-100 border border-yellow-300;
+}
+
+.kems-status-denied {
+  @apply text-red-700 bg-red-100 border border-red-300;
+}

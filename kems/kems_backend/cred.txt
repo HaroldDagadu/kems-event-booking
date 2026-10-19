@@ -1,0 +1,14 @@
+ Registrar:
+  - Email: registrar.test@university.edu.gh
+  - Password: keli123
+  - School ID: REG999
+
+  Student:
+  - Email: student.test@university.edu.gh
+  - Password: keli123
+  - School ID: UG20250001
+
+  Lecturer:
+  - Email: lecturer.test@university.edu.gh
+  - Password: keli123
+  - School ID: STAFF999

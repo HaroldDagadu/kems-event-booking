@@ -1,0 +1,6 @@
+@echo off
+echo Stopping any running Vite development server...
+taskkill /f /im node.exe 2>nul
+echo.
+echo Starting Vite development server with optimized settings...
+npm run dev 

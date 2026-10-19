@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+        }
+        .booking-details {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #4caf50;
+        }
+        .payment-confirmed {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 2px solid #4caf50;
+            text-align: center;
+        }
+        .detail-row {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+        .value {
+            color: #333;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        .status-badge {
+            background-color: #4caf50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4caf50;
+        }
+        .checkmark {
+            font-size: 48px;
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+        .next-steps {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎉 Payment Successful!</h1>
+        <h2>Your Booking is Now Confirmed</h2>
+    </div>
+    
+    <div class="content">
+        <p>Dear {{ user.full_name }},</p>
+        
+        <p>Excellent! We have successfully received your payment for <strong>{{ booking.event_name }}</strong>. Your booking is now confirmed and secured.</p>
+        
+        <div class="payment-confirmed">
+            <div class="checkmark">✅</div>
+            <h3>Payment Confirmed</h3>
+            <div class="amount">GHS {{ amount }}</div>
+            <p>Your venue is now reserved for your event!</p>
+        </div>
+        
+        <div class="booking-details">
+            <h3>Confirmed Booking Details</h3>
+            
+            <div class="detail-row">
+                <span class="label">Event Name:</span>
+                <span class="value">{{ booking.event_name }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="label">Venue:</span>
+                <span class="value">{{ venue.name }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="label">Date:</span>
+                <span class="value">{{ booking.desired_date|date:"F j, Y" }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="label">Time:</span>
+                <span class="value">{{ booking.start_time|time:"g:i A" }} - {{ booking.calculated_end_time|time:"g:i A" }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="label">Duration:</span>
+                <span class="value">{{ booking.duration_hours }} hours</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="label">Event Type:</span>
+                <span class="value">{{ booking.get_event_type_display }}</span>
+            </div>
+            
+            {% if organization %}
+            <div class="detail-row">
+                <span class="label">Organization:</span>
+                <span class="value">{{ organization.name }}</span>
+            </div>
+            {% endif %}
+            
+            <div class="detail-row">
+                <span class="label">Status:</span>
+                <span class="value"><span class="status-badge">{{ booking.get_status_display }}</span></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="label">Booking Reference:</span>
+                <span class="value">#{{ booking.id }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="label">Amount Paid:</span>
+                <span class="value amount">GHS {{ amount }}</span>
+            </div>
+        </div>
+        
+        <div class="next-steps">
+            <h3>📅 What Happens Next?</h3>
+            <ul>
+                <li><strong>Event Setup:</strong> You can now proceed with planning your event details</li>
+                <li><strong>Facility Access:</strong> Contact venue management for access arrangements on your event day</li>
+                <li><strong>Additional Services:</strong> Reach out if you need additional equipment or services</li>
+                <li><strong>Event Posting:</strong> Your event may be posted on our public calendar (for public events)</li>
+            </ul>
+        </div>
+        
+        <h3>Important Reminders:</h3>
+        <ul>
+            <li>Keep this confirmation email as your proof of payment</li>
+            <li>Your booking reference number is <strong>#{{ booking.id }}</strong></li>
+            <li>Contact us at least 48 hours in advance if you need to make any changes</li>
+            <li>Ensure you have all necessary equipment and setup arrangements ready</li>
+            <li>Follow university guidelines and venue policies during your event</li>
+        </ul>
+        
+        <h3>Need Support?</h3>
+        <p>Our team is available to assist you with any questions about your confirmed booking. Don't hesitate to reach out if you need:</p>
+        <ul>
+            <li>Technical support for event setup</li>
+            <li>Additional equipment or services</li>
+            <li>Changes to your booking (subject to availability)</li>
+            <li>Venue access and security arrangements</li>
+        </ul>
+        
+        <p>Thank you for choosing KEMS for your event. We look forward to hosting <strong>{{ booking.event_name }}</strong> at {{ venue.name }} and hope your event is a great success!</p>
+        
+        <p>Best regards,<br>
+        The KEMS Team<br>
+        University Event Management</p>
+    </div>
+    
+    <div class="footer">
+        <p>This is an automated message from the Knowledge Event Management System (KEMS).</p>
+        <p>Please do not reply to this email. For support, contact us through our official channels.</p>
+    </div>
+</body>
+</html>
